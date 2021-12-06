@@ -9,7 +9,7 @@ const replySchema = new mongoose.Schema(
     }
 )
 
-const commentSchema = new mongoose.Schema(
+const postSchema = new mongoose.Schema(
     {
         postId:{type: String, require: true},
         text:{type: String, required: true},
@@ -26,3 +26,10 @@ function validateComment(comment){
     });
     return schema.validate(comment);
 }
+
+const Post = mongoose.model("Post", postSchema);
+const Reply = mongoose.model("Reply", replySchema);
+
+module.exports.Reply = Reply;
+module.exports.validateComment = validateComment;
+module.exports.Post = Post;

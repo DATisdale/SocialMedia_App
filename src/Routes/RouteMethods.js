@@ -1,5 +1,5 @@
 const express = require("express");
-const{Reply, Comment, validateComment}=require("../Models/Comment");
+const{Reply, Post, validateComment}=require("../Models/Comment");
 const router=express.Router();
 
 router.get("PLACEHOLDER", async (req, res) => {
