@@ -52,4 +52,23 @@ router.put('/:postId', async (req, res) => {
     }
 });
 
+router.post('/:postId/replies', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.postId);
+
+        const reply = new Reply({
+            text: req.body.text,
+            likes: req.body.dislikes,
+        });
+
+        post.replies.push(reply);
+
+        await post.save();
+
+        return res.send(post.replies);
+    } catch (ex) {
+        return res.status(500).send(`Internal Server Error: ${ex}`);
+    }
+});
+
 module.exports=router;
