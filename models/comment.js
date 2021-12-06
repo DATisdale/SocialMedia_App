@@ -19,17 +19,17 @@ const postSchema = new mongoose.Schema(
     }
 )
 
-function validateComment(comment){
+function validatePost(post){
     const schema = Joi.object({
         postId: Joi.string().min(2).max(50).required(),
         text: Joi.string().required(),
     });
-    return schema.validate(comment);
+    return schema.validate(post);
 }
 
 const Post = mongoose.model("Post", postSchema);
 const Reply = mongoose.model("Reply", replySchema);
 
 module.exports.Reply = Reply;
-module.exports.validateComment = validateComment;
+module.exports.validatePost = validatePost;
 module.exports.Post = Post;
