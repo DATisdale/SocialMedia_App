@@ -1,30 +1,25 @@
 const mogoose=require("mongoose");
 const Joi= require("joi");
 
-const signupSchema= new mongoose.Schema(
+const profileSchema= new mongoose.Schema(
     {
         username:{type: String, required: true},
-        firstName:{type: String, required: true},
-        lastName:{type: String, required: true},
         email:{type: String, required: true},
-        birthday:{type: String, required: true},
-        password:{type:String, required: true}
+        password:{type:String, required: true},
+        posts:[]
     }
 )
 
-function validateSignup(signup){
+function validateProfile(profile){
     const schema= Joi.object({
         username: Joi.string().min(2).max(50).required(),
-        firstName: Joi.string().min(2).max(50).required(),
-        lastName: Joi.string().min(2).max(50).required(),
         email: Joi.string().min(2).max(50).required(),
-        birthday: Joi.string().min(2).max(50).required(),
         password: Joi.string().min(2).max(50).required(),
     });
     return schema.validate(profile);
 }
 
-const Signup = mongoose.model("Signup", profileSchema);
+const Profile = mongoose.model("profile", profileSchema);
 
-module.exports.Signup=Signup;
-module.exports.validateSignup=validateSignup;
+module.exports.Profile=Profile;
+module.exports.validateProfile=validateProfile;
