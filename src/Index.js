@@ -1,8 +1,8 @@
-const connectDB = require("./Startup/db.js");
+const connectDB = require("./Startup/db");
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const RouteMethods = require("./Routes/RouteMethods");
+const router = require("./Routes/RouteMethods");
 
 connectDB();
 
