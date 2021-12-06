@@ -1,5 +1,5 @@
 const express = require("express");
-const{Reply, Post, validateComment}=require("../models/Comment");
+const{Reply, Post, validatePost}=require("../models/Comment");
 const router=express.Router();
 
 router.get("/:postID", async (req, res) => {
@@ -13,7 +13,7 @@ router.get("/:postID", async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const {error} = validateComment(req.body);
+        const {error} = validatePost(req.body);
         if (error)
             return res.status(400).send(error);
 
